@@ -52,6 +52,8 @@ class DistanceMeter {
   updateHighScore() {
     if (this.score > this.highestScore) {
       this.highestScore = this.score;
+
+      console.log("updating high score - provide rewarde here");
     }
 
     this.draw();

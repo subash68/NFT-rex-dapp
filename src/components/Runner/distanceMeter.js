@@ -1,5 +1,6 @@
 import scoreNumberImg from "./images/score_number.png";
 import loadImg from "./imageLoader";
+import { claimReward } from '../../eth/sign-claim';
 
 class DistanceMeter {
   /** @type {!HTMLCanvasElement} */
@@ -53,7 +54,10 @@ class DistanceMeter {
     if (this.score > this.highestScore) {
       this.highestScore = this.score;
 
-      console.log("updating high score - provide rewarde here");
+      // Should see collection and provider here
+      claimReward(this.config.collection, this.config.provider);
+      console.log(this.config);
+      console.log(`updating high score - provide rewarde here ${this.config.caller}`);
     }
 
     this.draw();

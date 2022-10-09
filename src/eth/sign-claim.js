@@ -1,7 +1,6 @@
 import { ethers } from "ethers";
 import { createInstance } from "./forwarder";
 import { signMetaTxRequest } from "./signer";
-import { createCollectionInstance } from "./contract";
 
 async function sendMetaTx(collection, provider, signer) {
   console.log(`Sending register meta-tx`);
@@ -11,7 +10,7 @@ async function sendMetaTx(collection, provider, signer) {
   const forwarder = createInstance(provider);
   const from = await signer.getAddress();
 
-  const data = dao.interface.encodeFunctionData("mintToCaller", [
+  const data = collection.interface.encodeFunctionData("mintToCaller", [
     "somerandomTokenURI",
   ]);
   const to = collection.address;

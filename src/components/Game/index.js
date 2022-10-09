@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+import { createProvider } from "../../eth/provider";
+import { createCollectionInstance } from "../../eth/contract";
 
 import "./styles.css";
-
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       outerContainerEl: null,
       data: {
-        account: "",
+        account: "0x4db8bcCF4385C7AA46F48eb42f70FA41Df917b44",
+        collection: createCollectionInstance(),
+        provider: createProvider()
       },
     };
   }
@@ -31,7 +35,9 @@ class App extends Component {
     const config = {
       id: "runner",
       width: this.outerContainerEl.offsetWidth,
-      caller: "0x4db8bcCF4385C7AA46F48eb42f70FA41Df917b44", // ! HARDCODE THE CALLER HERE - LATER CAN BE CHANGED ACCORDINGLY...
+      caller: this.state.data.account, // ! HARDCODE THE CALLER HERE - LATER CAN BE CHANGED ACCORDINGLY...
+      collection: this.state.data.collection,
+      provider: this.state.data.provider
     };
     const { Runner } = await import("../Runner");
     const runner = new Runner(this.outerContainerEl, config); // * Send account info

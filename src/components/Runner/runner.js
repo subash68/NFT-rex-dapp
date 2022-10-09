@@ -101,8 +101,7 @@ class Runner {
     // obstacles
     this.groundManager = new GroundManager(this.canvas);
     // distance meter
-    console.log(this.config);
-    this.distanceMeter = new DistanceMeter(this.canvas);
+    this.distanceMeter = new DistanceMeter(this.canvas, this.config);
     // draw t-rex
     this.tRex = new Trex(this.canvas);
     this.tRex.draw(); // first frame
